@@ -107,7 +107,9 @@
         "\\bin a nutshell\\b",
         "\\bat the (?:end of the day|heart of)\\b",
         "\\bthe broader (?:point|picture|context|question)\\b",
-        "\\b(?:here'?s|that'?s) (?:the|where the) (?:thing|rub|catch|tension|crux)\\b"
+        "\\b(?:here'?s|that'?s) (?:the|where the) (?:thing|rub|catch|tension|crux)\\b",
+        "\\b(?:this|that|it) isn'?t (?:a |an )?[\\w ]{2,50}[.;] (?:It|That|This)'?s\\b",
+        "\\b(?:this|that|it)(?:'s| is) not (?:a |an )?[\\w ]{2,50}[-] (?:it|that|this)'?s\\b"
       ],
       "match_mode": "anywhere",
       "weight": 20,
