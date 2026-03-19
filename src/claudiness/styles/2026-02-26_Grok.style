@@ -1,0 +1,133 @@
+{
+  "$schema_version": "1.0",
+  "model": "grok",
+  "family": "grok",
+  "display_name": "Grok (xAI)",
+  "date": "2026-02-26",
+  "scoring": { "normalization_base": 500, "min_word_count": 30 },
+  "categories": {
+    "casual_tone": {
+      "display_name": "Casual/irreverent tone",
+      "patterns": [
+        "\\bhaha\\b",
+        "\\blol\\b",
+        "\\bbtw\\b",
+        "\\bngl\\b",
+        "\\bhonestly though\\b",
+        "\\breal talk\\b",
+        "\\bi mean,? (?:come on|seriously|look)\\b",
+        "\\blet'?s be (?:real|honest)\\b",
+        "\\bspoiler alert\\b",
+        "\\bplot twist\\b",
+        "\\bbuckle up\\b",
+        "\\bwild(?:ly)?\\b",
+        "\\bcrazy\\b",
+        "\\binsane(?:ly)?\\b"
+      ],
+      "match_mode": "anywhere",
+      "weight": 20,
+      "multiplier": 5,
+      "direction": "positive"
+    },
+    "edgy_humor": {
+      "display_name": "Edgy/sarcastic humor",
+      "patterns": [
+        "\\b(?:not gonna lie|no cap)\\b",
+        "\\bbig (?:brain|mood|yikes)\\b",
+        "\\bbruh\\b",
+        "\\bvibe(?:s)?\\b",
+        "\\bshenanigans\\b",
+        "\\bdumpster fire\\b",
+        "\\bhot take\\b",
+        "\\bspicy\\b",
+        "\\bchef'?s kiss\\b",
+        "\\b(?:chef|no) cap\\b"
+      ],
+      "match_mode": "anywhere",
+      "weight": 15,
+      "multiplier": 6,
+      "direction": "positive"
+    },
+    "directness": {
+      "display_name": "Direct/opinionated stance",
+      "patterns": [
+        "\\bthe (?:real|actual|simple) (?:answer|truth|deal)\\b",
+        "\\bhere'?s the (?:deal|thing|kicker)\\b",
+        "\\bbottom line\\b",
+        "\\bstraight up\\b",
+        "\\bno (?:sugarcoating|bs|fluff)\\b",
+        "\\bcut (?:the|to the) (?:crap|chase)\\b",
+        "\\bplain and simple\\b",
+        "\\bfrankly\\b"
+      ],
+      "match_mode": "anywhere",
+      "weight": 15,
+      "multiplier": 5,
+      "direction": "positive"
+    },
+    "pop_culture": {
+      "display_name": "Pop culture references",
+      "patterns": [
+        "\\bmeme\\b",
+        "\\binternet (?:culture|slang|speak)\\b",
+        "\\btwitter\\b",
+        "\\b(?:x|the platform)\\b.{0,20}\\b(?:post|thread|take)\\b",
+        "\\btrending\\b",
+        "\\bviral\\b",
+        "\\bmain character\\b",
+        "\\btouch grass\\b"
+      ],
+      "match_mode": "anywhere",
+      "weight": 10,
+      "multiplier": 5,
+      "direction": "positive"
+    },
+    "claude_hedging": {
+      "display_name": "Claude hedging (anti-signal)",
+      "patterns": [
+        "\\bit'?s worth (?:noting|mentioning|considering|pointing out)\\b",
+        "\\bi should (?:note|mention|point out|clarify|emphasize)\\b",
+        "\\bthis is (?:a |somewhat |particularly )?nuanced\\b",
+        "\\bthere'?s (?:a lot of )?nuance (?:here|to|in)\\b",
+        "\\bwith that (?:caveat|said|in mind)\\b"
+      ],
+      "match_mode": "anywhere",
+      "weight": 10,
+      "multiplier": 4,
+      "direction": "negative"
+    },
+    "chatgpt_formality": {
+      "display_name": "ChatGPT formality (anti-signal)",
+      "patterns": [
+        "\\bdelve(?:s|d)?\\s(?:into|deeper)\\b",
+        "\\btapestry of\\b",
+        "\\bin the (?:ever-?evolving|ever-?changing|dynamic|rapidly changing) (?:landscape|world|realm)\\b",
+        "\\bbeacon of\\b",
+        "\\ba testament to\\b",
+        "\\bholistic approach\\b"
+      ],
+      "match_mode": "anywhere",
+      "weight": 10,
+      "multiplier": 4,
+      "direction": "negative"
+    }
+  },
+  "structural": {
+    "enabled": true,
+    "weight": 10,
+    "rules": [
+      { "feature": "bullet_ratio", "thresholds": [{"max": 0.15, "points": 3}] },
+      { "feature": "sentence_length_variance", "thresholds": [{"min": 10, "points": 4}, {"min": 6, "points": 2}] }
+    ]
+  },
+  "bonuses": {
+    "conversational_tone": { "enabled": true, "weight": 10, "multiplier": 0.4 }
+  },
+  "labels": [
+    {"min": 80, "label": "Peak Grok"},
+    {"min": 60, "label": "Very Grok-like"},
+    {"min": 40, "label": "Noticeably Grok-like"},
+    {"min": 20, "label": "Mild Grok tendencies"},
+    {"min": 0, "label": "Not particularly Grok-like"}
+  ]
+}

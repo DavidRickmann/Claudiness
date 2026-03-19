@@ -1,0 +1,157 @@
+{
+  "$schema_version": "1.0",
+  "model": "chatgpt",
+  "family": "chatgpt",
+  "display_name": "ChatGPT (OpenAI)",
+  "date": "2026-02-26",
+  "scoring": { "normalization_base": 500, "min_word_count": 30 },
+  "categories": {
+    "chatgpt_vocabulary": {
+      "display_name": "ChatGPT signature vocabulary",
+      "patterns": [
+        "\\bdelve(?:s|d)?\\s(?:into|deeper)\\b",
+        "\\btapestry of\\b",
+        "\\bin the (?:ever-?evolving|ever-?changing|dynamic|rapidly changing) (?:landscape|world|realm)\\b",
+        "\\bever-?evolving\\b",
+        "\\bunlock(?:ing|s|ed)? (?:the |your )?(?:full |true )?(?:potential|power|secrets?)\\b",
+        "\\bembark(?:s|ed|ing)? on (?:a |this |the )?(?:journey|adventure|quest)\\b",
+        "\\bbeacon of\\b",
+        "\\ba testament to\\b",
+        "\\bin the realm of\\b",
+        "\\bseamless(?:ly)?\\b",
+        "\\bmeticulous(?:ly)?\\b",
+        "\\bpivotal\\b",
+        "\\bcommendable\\b",
+        "\\bunprecedented\\b",
+        "\\bvibrant\\b",
+        "\\bhustle and bustle\\b",
+        "\\btreasure trove\\b",
+        "\\bmaster the art\\b",
+        "\\bgame.?changer\\b",
+        "\\blet'?s (?:dive|deep dive) (?:in|into)\\b",
+        "\\bin today'?s (?:digital|fast-?paced|modern|interconnected) (?:age|world|era|landscape)\\b",
+        "\\bthe transformative power of\\b",
+        "\\bpave the way\\b",
+        "\\bholistic approach\\b",
+        "\\bactionable (?:tips|insights|steps|advice)\\b",
+        "\\bleverage(?:s|d|ing)?\\b",
+        "\\brobust\\b",
+        "\\bcutting.?edge\\b",
+        "\\bharnessing?\\b"
+      ],
+      "match_mode": "anywhere",
+      "weight": 25,
+      "multiplier": 5,
+      "direction": "positive"
+    },
+    "list_structure": {
+      "display_name": "List-heavy formatting",
+      "patterns": [
+        "\\b(?:here are|here's a list|the following)\\b",
+        "\\b(?:firstly|secondly|thirdly|finally)\\b",
+        "\\b(?:step \\d|tip \\d|point \\d)\\b",
+        "\\bkey (?:takeaways?|points?|insights?|considerations?)\\b"
+      ],
+      "match_mode": "anywhere",
+      "weight": 10,
+      "multiplier": 5,
+      "direction": "positive"
+    },
+    "superlatives": {
+      "display_name": "Emphatic superlatives",
+      "patterns": [
+        "\\babsolutely (?:essential|crucial|vital|critical|fundamental)\\b",
+        "\\bindispensable\\b",
+        "\\bparamount\\b",
+        "\\bgame.?changer\\b",
+        "\\bgroundbreaking\\b",
+        "\\brevolutioniz(?:e|ing|ed)\\b",
+        "\\btransformative\\b",
+        "\\bunparalleled\\b"
+      ],
+      "match_mode": "anywhere",
+      "weight": 10,
+      "multiplier": 5,
+      "direction": "positive"
+    },
+    "shared_ai_markers": {
+      "display_name": "Generic AI patterns",
+      "patterns": [
+        "\\bcomplex and multifaceted\\b",
+        "\\bintricate interplay\\b",
+        "\\bplayed? a (?:crucial|vital|key|pivotal|significant|important) role\\b",
+        "\\bcannot be overstated\\b",
+        "\\bit is (?:important|worth|crucial|essential|vital) to (?:note|recognize|understand|remember)\\b",
+        "\\bprofound impact\\b",
+        "\\bcritical(?:ly)? important\\b",
+        "\\bin conclusion\\b",
+        "\\bin summary\\b",
+        "\\bmoreover\\b",
+        "\\bfurthermore\\b",
+        "\\badditionally\\b",
+        "\\bmultifaceted\\b",
+        "\\bintricate\\b",
+        "\\bunderscores?\\b"
+      ],
+      "match_mode": "anywhere",
+      "weight": 10,
+      "multiplier": 2,
+      "direction": "positive"
+    },
+    "claude_hedging": {
+      "display_name": "Claude hedging (anti-signal)",
+      "patterns": [
+        "\\bit'?s worth (?:noting|mentioning|considering|pointing out)\\b",
+        "\\bi should (?:note|mention|point out|clarify|emphasize)\\b",
+        "\\bit'?s important to (?:note|recognize|acknowledge|understand)\\b",
+        "\\bfrom my understanding\\b",
+        "\\bto be (?:fair|clear|honest|precise|transparent)\\b",
+        "\\bthat (?:said|being said)\\b",
+        "\\bhaving said that\\b",
+        "\\bi think it'?s (?:fair|important|worth|helpful)\\b",
+        "\\bi'?d (?:argue|suggest|say|note|venture)\\b",
+        "\\bit seems (?:like|that|to)\\b",
+        "\\bthis is (?:a |somewhat |particularly )?nuanced\\b",
+        "\\bthere'?s (?:a lot of )?nuance (?:here|to|in)\\b",
+        "\\bin fairness\\b",
+        "\\bwith that (?:caveat|said|in mind)\\b"
+      ],
+      "match_mode": "anywhere",
+      "weight": 10,
+      "multiplier": 3,
+      "direction": "negative"
+    },
+    "claude_safety": {
+      "display_name": "Claude safety disclaimers (anti-signal)",
+      "patterns": [
+        "\\bi (?:should|want to|need to|have to) (?:be )?(?:upfront|transparent|honest|clear|careful)\\b",
+        "\\bi'?m not (?:a |an )?(?:expert|lawyer|doctor|therapist|financial|medical)\\b",
+        "\\bplease (?:consult|speak with|check with|talk to) (?:a |an )?(?:professional|expert|doctor|lawyer|therapist)\\b",
+        "\\bwith (?:that|the) caveat\\b"
+      ],
+      "match_mode": "anywhere",
+      "weight": 5,
+      "multiplier": 3,
+      "direction": "negative"
+    }
+  },
+  "structural": {
+    "enabled": true,
+    "weight": 15,
+    "rules": [
+      { "feature": "bullet_ratio", "thresholds": [{"min": 0.3, "points": 5}, {"min": 0.15, "points": 3}] },
+      { "feature": "em_dash_rate", "thresholds": [{"max": 0.3, "points": 3}] },
+      { "feature": "heading_density", "thresholds": [{"min": 0.1, "points": 4}, {"min": 0.05, "points": 2}] }
+    ]
+  },
+  "bonuses": {
+    "conversational_tone": { "enabled": false, "weight": 0, "multiplier": 0 }
+  },
+  "labels": [
+    {"min": 80, "label": "Peak ChatGPT"},
+    {"min": 60, "label": "Very ChatGPT-like"},
+    {"min": 40, "label": "Noticeably ChatGPT-like"},
+    {"min": 20, "label": "Mild ChatGPT tendencies"},
+    {"min": 0, "label": "Not particularly ChatGPT-like"}
+  ]
+}
